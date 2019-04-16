@@ -1,5 +1,32 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+doctype html
+html
+  head
+    title DrawingOnline
+    link(href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T", crossorigin="anonymous")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    #heading.container-fluid DrawingOnline
+    nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
+      ul.navbar-nav
+        li.nav-item.active
+          a(href="#").nav-link Active
+        li.nav-item
+          a(href="#").nav-link Link
+        li.nav-item
+          a(href="#").nav-link Link
+      ul.navbar-nav.ml-auto
+        li.nav-item
+          a(href="#").nav-link Logout
+    .container-fluid
+      .row.room_row
+        .col-sm-2.col-xl-2(style="background-color:red") RoomID
+        .col-sm-2.col-xl-2(style="background-color:blue") Artists
+        .col-sm-8.col-xl-8(style="background-color:yellow") RoomName
+      .row.room_row
+        .col-sm-2.col-xl-2(style="background-color:red") RoomID
+        .col-sm-2.col-xl-2(style="background-color:blue") Artists
+        .col-sm-8.col-xl-8(style="background-color:yellow") RoomName
+      .row.room_row
+        .col-sm-2.col-xl-2(style="background-color:red") RoomID
+        .col-sm-2.col-xl-2(style="background-color:blue") Artists
+        .col-sm-8.col-xl-8(style="background-color:yellow") RoomName
