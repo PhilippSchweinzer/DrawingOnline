@@ -3,6 +3,7 @@
 var drawboard;
 var prevMouse = undefined;
 var currMouse;
+var stroke;
 
 
 
@@ -13,10 +14,16 @@ var currMouse;
  * the "mousedown"-listener to the canvas to start the drawing process.
  */
 function init() {
-    drawboard = new DrawBoard(1000,1000, document.getElementById('draw_canvas'));
+    drawboard = new DrawBoard(500,500, document.getElementById('draw_canvas'));
     drawboard.canvas.addEventListener("mousedown", startDrawAbility);
     console.log(drawboard);
     startOfflineHandler();
+}
+
+function strokeSliderChanged() {
+    stroke = document.getElementById("strokeslider").value;
+    document.getElementById("strokeoutput").innerHTML = stroke;
+
 }
 
 
@@ -103,8 +110,10 @@ function onMouseMove(event) {
     currMouse = getMousePos(event);
     
     //Draw line
+    drawboard.context.beginPath();
     drawboard.context.moveTo(prevMouse.x, prevMouse.y);
     drawboard.context.lineTo(currMouse.x, currMouse.y);
+    drawboard.context.lineWidth = stroke;
     drawboard.context.stroke();
 }
 
