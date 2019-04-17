@@ -2,8 +2,11 @@ doctype html
 html
   head
     link(rel='stylesheet', href='/stylesheets/drawboard.css')
+    link(rel='stylesheet', href='/stylesheets/offline.css')
+    link(rel='stylesheet', href='/stylesheets/offline-language-english.css')
     script(type='text/javascript' src='/javascripts/drawboard.js')
     script(type='text/javascript' src='/javascripts/drawboard-init.js')
+    script(type='text/javascript' src='/javascripts/offline.js')
   body(onload="init()")
     h1 DrawingOnline
     canvas#draw_canvas

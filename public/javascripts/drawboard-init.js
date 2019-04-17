@@ -4,6 +4,10 @@ var drawboard;
 var prevMouse = undefined;
 var currMouse;
 
+
+
+
+
 /**
  * Executed on the body onload. Sets the drawboard variable and adds
  * the "mousedown"-listener to the canvas to start the drawing process.
@@ -12,7 +16,37 @@ function init() {
     drawboard = new DrawBoard(1000,1000, document.getElementById('draw_canvas'));
     drawboard.canvas.addEventListener("mousedown", startDrawAbility);
     console.log(drawboard);
+    startOfflineHandler();
 }
+
+
+/**
+ * Start the handling of going "offline" or "online" with the help of
+ * the Offline.js library. 
+ * Options are configured.
+ */
+function startOfflineHandler() {
+    Offline.options = {
+        // to check the connection status immediatly on page load.
+        checkOnLoad: false,
+    
+        // to monitor AJAX requests to check connection.
+        interceptRequests: true,
+    
+        // to automatically retest periodically when the connection is down (set to false to disable).
+        reconnect: {
+            // delay time in seconds to wait before rechecking.
+            initialDelay: 3,
+    
+            // wait time in seconds between retries.
+            delay: 8
+        },
+    
+        // to store and attempt to remake requests which failed while the connection was down.
+        requests: true
+    };
+}
+
 
 
 /**
