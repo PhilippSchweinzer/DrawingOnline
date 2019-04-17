@@ -57,6 +57,8 @@ function startOfflineHandler() {
 function removeDrawAbility(event) {
     //Remove Mouse-Movement-Listener
     drawboard.canvas.removeEventListener("mousemove", onMouseMove);
+    //Remove the Listener that checks if the mouse leaves the Canvas
+    drawboard.canvas.removeEventListener("mouseout", onMouseOut);
     //Set prevMouse to undefined so new line is handled appropiatly
     prevMouse = undefined;
     console.log(" listener removed");
@@ -75,6 +77,13 @@ function startDrawAbility(event) {
 
     //Wenn Maus irgendwo ausgelassen wird -> malen stoppen
     document.addEventListener("mouseup", removeDrawAbility);
+
+    //Wenn Maus den Canvas verlässt -> preMouse auf undefined setzen um neue Linie anzufangen
+    drawboard.canvas.addEventListener("mouseout", onMouseOut);
+}
+
+function onMouseOut(event) {
+    prevMouse = undefined;
 }
 
 /**
