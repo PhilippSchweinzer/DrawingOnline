@@ -1,9 +1,16 @@
 //Globale Variable zur Speicherung einer DrawBoard Referenz
 /** @type {DrawBoard} */
 var drawboard;
+//the mouse position from the last time the mouse was moved.
 var prevMouse = undefined;
+//the current mouse position
 var currMouse;
-var stroke;
+//The mouse position from the last frame
+var lastCurrMouse;
+//Boolean = true if mouse is currently down, false if up
+var mouseDown;
+//stores the wanted line width
+var lineWidth;
 
 
 
@@ -15,14 +22,38 @@ var stroke;
  */
 function init() {
     drawboard = new DrawBoard(500,500, document.getElementById('draw_canvas'));
+    drawboard.context.lineCap = "round";
     drawboard.canvas.addEventListener("mousedown", startDrawAbility);
     console.log(drawboard);
     startOfflineHandler();
+    setInterval(updateCanvas, 3);
 }
 
+function updateCanvas() {
+    if(mouseDown && currMouse != lastCurrMouse) {
+
+        if(typeof prevMouse == "undefined") {
+            prevMouse = currMouse;
+        }
+
+        //Draw line
+        drawboard.context.beginPath();
+        drawboard.context.moveTo(prevMouse.x, prevMouse.y);
+        drawboard.context.lineTo(currMouse.x, currMouse.y);
+        drawboard.context.stroke();
+    }
+    
+    //Sets the lastCurrMouse to the currMouse at the end of the frame calculation
+    lastCurrMouse = currMouse;
+}
+
+
+
+
 function strokeSliderChanged() {
-    stroke = document.getElementById("strokeslider").value;
-    document.getElementById("strokeoutput").innerHTML = stroke;
+    lineWidth = document.getElementById("strokeslider").value;
+    document.getElementById("strokeoutput").innerHTML = lineWidth;
+    drawboard.context.lineWidth = lineWidth;
 
 }
 
@@ -62,6 +93,8 @@ function startOfflineHandler() {
  * @param {*} event Event
  */
 function removeDrawAbility(event) {
+    //Mouse is now up -> mouseDown = false
+    mouseDown = false;
     //Remove Mouse-Movement-Listener
     drawboard.canvas.removeEventListener("mousemove", onMouseMove);
     //Remove the Listener that checks if the mouse leaves the Canvas
@@ -78,6 +111,8 @@ function removeDrawAbility(event) {
  * @param {*} event Event
  */
 function startDrawAbility(event) {
+    //Mouse is now down -> mouseDown = true
+    mouseDown = true;
     console.log("mousedown: listener added");
     //Set Mouse-Movement-Listener
     drawboard.canvas.addEventListener("mousemove", onMouseMove);
@@ -90,6 +125,8 @@ function startDrawAbility(event) {
 }
 
 function onMouseOut(event) {
+    event.preventDefault();
+    event.stopPropagation();
     prevMouse = undefined;
 }
 
@@ -98,6 +135,8 @@ function onMouseOut(event) {
  * @param {*} event Event
  */
 function onMouseMove(event) {
+    event.preventDefault();
+    event.stopPropagation();
 
     //If new line was started
     if(typeof prevMouse == "undefined") {
@@ -108,13 +147,6 @@ function onMouseMove(event) {
     
     //update Mouse position
     currMouse = getMousePos(event);
-    
-    //Draw line
-    drawboard.context.beginPath();
-    drawboard.context.moveTo(prevMouse.x, prevMouse.y);
-    drawboard.context.lineTo(currMouse.x, currMouse.y);
-    drawboard.context.lineWidth = stroke;
-    drawboard.context.stroke();
 }
 
 /**

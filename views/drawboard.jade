@@ -9,6 +9,6 @@ html
     script(type='text/javascript' src='/javascripts/offline.js')
   body(onload="init()")
     h1 DrawingOnline
-    input(min="1" max="10" value="3" type="range" onchange="strokeSliderChanged()")#strokeslider
+    input(min="1" max="10" value="3" type="range" oninput="strokeSliderChanged()")#strokeslider
     #strokeoutput
     canvas#draw_canvas
