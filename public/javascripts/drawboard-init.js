@@ -22,13 +22,20 @@ var lineWidth;
  */
 function init() {
     drawboard = new DrawBoard(500,500, document.getElementById('draw_canvas'));
+    //Set lineCap to round to draw the lines with a round ending
     drawboard.context.lineCap = "round";
+    //Add the "mousedown" listener
     drawboard.canvas.addEventListener("mousedown", startDrawAbility);
+    //log the drawboard
     console.log(drawboard);
     startOfflineHandler();
+    //Execute updateCanvas x-time in a second.
     setInterval(updateCanvas, 3);
 }
 
+/**
+ * Draws the lines according to the variables set in the listener functions
+ */
 function updateCanvas() {
     if(mouseDown && currMouse != lastCurrMouse) {
 
@@ -49,12 +56,14 @@ function updateCanvas() {
 
 
 
-
+/**
+ * Executed when the stroke range-slider changes
+ * Updates the lineWidth and also displays the value in DOM
+ */
 function strokeSliderChanged() {
     lineWidth = document.getElementById("strokeslider").value;
     document.getElementById("strokeoutput").innerHTML = lineWidth;
     drawboard.context.lineWidth = lineWidth;
-
 }
 
 
