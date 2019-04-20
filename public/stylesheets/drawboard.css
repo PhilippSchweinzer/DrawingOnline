@@ -1,3 +1,70 @@
 #draw_canvas {
     background-color: gray;
+    display: block;
+}
+
+#room_header {
+    background-color: #4a4a4a;
+    height: 80px;
+    color: #fff;
+    font-size: 28px;
+}
+
+#options_col {
+    display: inherit;
+}
+
+#strokeoutput {
+    margin-left: 7%;
+}
+
+.color {
+    height: 45px;
+    width: 45px;
+    display: inline-block;
+    border: 3px solid black;
+    margin-right: 5px;
+}
+
+#color_red {
+    background-color: red;
+}
+
+#color_yellow {
+    background-color: yellow;
+}
+
+#color_white {
+    background-color: white;
+}
+
+#color_blue {
+    background-color: blue;
+}
+
+#color_green {
+    background-color: green;
+}
+
+#color_orange {
+    background-color: orange;
+}
+
+#color_black {
+    background-color: black;
+}
+
+#color_purple {
+    background-color: purple;
+}
+
+#options_menu {
+    padding-top: 20px;
+    padding-left: 20px;
+    background-color: rosybrown;
+}
+
+.color_menu_row {
+    max-width: 100%;
+    flex: unset !important;
 }

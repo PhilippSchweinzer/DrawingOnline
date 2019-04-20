@@ -31,6 +31,8 @@ function init() {
     startOfflineHandler();
     //Execute updateCanvas x-time in a second.
     setInterval(updateCanvas, 3);
+    //Execute the function once to display the number onload
+    strokeSliderChanged()
 }
 
 /**

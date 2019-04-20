@@ -1,6 +1,7 @@
 doctype html
 html
   head
+    link(href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T", crossorigin="anonymous")
     link(rel='stylesheet', href='/stylesheets/drawboard.css')
     link(rel='stylesheet', href='/stylesheets/offline.css')
     link(rel='stylesheet', href='/stylesheets/offline-language-english.css')
@@ -8,7 +9,26 @@ html
     script(type='text/javascript' src='/javascripts/drawboard-init.js')
     script(type='text/javascript' src='/javascripts/offline.js')
   body(onload="init()")
-    h1 DrawingOnline
-    input(min="1" max="10" value="3" type="range" oninput="strokeSliderChanged()")#strokeslider
-    #strokeoutput
-    canvas#draw_canvas
+    #room_header.container-fluid.d-table
+      div.d-table-cell.align-middle Room: 
+    .row
+      .col-lg-4.col-md-4.col-sm-4
+        #options_menu
+          .row
+            .col-lg-3.col-md-3.col-sm-3.color_menu_row
+              .color#color_red
+              .color#color_yellow
+              .color#color_white
+              .color#color_blue
+          .row
+            .col-lg-3.col-md-3.col-sm-3.color_menu_row
+              .color#color_green
+              .color#color_orange
+              .color#color_black
+              .color#color_purple
+          .row
+            .col-lg-2.col-md-2.col-sm-2#options_col
+              input(min="1" max="10" value="3" type="range" oninput="strokeSliderChanged()")#strokeslider
+              #strokeoutput
+      .col-lg-8.col-md-8.col-sm-8
+        canvas#draw_canvas
