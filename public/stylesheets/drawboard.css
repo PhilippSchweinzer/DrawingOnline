@@ -61,10 +61,13 @@
 #options_menu {
     padding-top: 20px;
     padding-left: 20px;
-    background-color: rosybrown;
 }
 
 .color_menu_row {
     max-width: 100%;
     flex: unset !important;
+}
+
+.menu_row {
+    background-color: rosybrown;
 }
